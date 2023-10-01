@@ -2,7 +2,7 @@ import { useState } from "react";
 import ErrorMessage from "@components/ErrorMessage/ErrorMessage";
 
 const withApiError = (Component) => {
-  return props => {
+  return (props) => {
     const [errorApi, setErrorApi] = useState(false);
 
     return (
@@ -18,4 +18,3 @@ const withApiError = (Component) => {
 };
 
 export default withApiError;
-

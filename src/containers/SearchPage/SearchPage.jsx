@@ -1,21 +1,18 @@
-import { useCallback, useEffect, useState } from "react";
-import cn from "classnames";
+import { useEffect, useState } from "react";
 import { getApiResource } from "@utils/network";
 import { API_SEARCH } from "@constants/api";
 import withApiError from "@hoc/hoc";
 import { getPeopleId, getPeopleImage } from "@services/getPeopleData";
 import SearchPageInfo from "@components/SearchPage/SearchPageInfo/SearchPageInfo";
 import SearchInput from "@components/SearchPage/SearchInput/SearchInput";
-import styles from "./SearchPage.module.css";
 
 const SearchPage = ({ setErrorApi }) => {
   const [inputSearchValue, setInputSearchValue] = useState("");
   const [people, setPeople] = useState([]);
+  const [isLoading, setIsLoading] = useState(true);
 
   const getResponse = async (param) => {
     const res = await getApiResource(API_SEARCH + param);
-
-    console.log(res);
 
     if (res) {
       const peopleList = res.results.map(({ name, url }) => {
@@ -30,6 +27,7 @@ const SearchPage = ({ setErrorApi }) => {
       });
       setPeople(peopleList);
       setErrorApi(true);
+      setIsLoading(false);
     }
     setErrorApi(false);
   };
@@ -47,7 +45,7 @@ const SearchPage = ({ setErrorApi }) => {
     <div>
       <h1 className="title">Search</h1>
       <SearchInput value={inputSearchValue} handleInputChange={handleInputChange} />
-      <SearchPageInfo people={people} />
+      <SearchPageInfo people={people} isLoading={isLoading}/>
     </div>
   );
 };

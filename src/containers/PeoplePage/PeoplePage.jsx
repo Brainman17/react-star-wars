@@ -1,7 +1,7 @@
 import { useState, useEffect } from "react";
 import PropTypes from "prop-types";
 
-import withApiError from "../../hoc/hoc";
+import withApiError from "@hoc/hoc";
 import { getApiResource, changeHTTP } from "@utils/network";
 import { API_PEOPLE } from "@constants/api";
 import {
@@ -12,14 +12,14 @@ import {
 import PeopleList from "@components/PeoplePage/PeopleList/PeopleList";
 import { useQueryParams } from "../../hooks/useQueryParams";
 import PeopleNavigation from "@components/PeoplePage/PeopleNavigation/PeopleNavigation";
-
-// import styles from "./PeoplePage.module.css";
+import Preloader from '../../components/Preloader/Preloader';
 
 const PeoplePage = ({ setErrorApi }) => {
   const [people, setPeople] = useState([]);
   const [prevPage, setPrevPage] = useState(null);
   const [nextPage, setNextPage] = useState(null);
   const [counterPage, setCounterPage] = useState(1);
+  const [isLoading, setIsLoading] = useState(true);
 
   const query = useQueryParams();
   const queryPage = query.get("page");
@@ -44,6 +44,7 @@ const PeoplePage = ({ setErrorApi }) => {
       setNextPage(changeHTTP(res.next));
       setCounterPage(getPeoplePageId(url));
       setErrorApi(false);
+      setIsLoading(true);
     } else {
       setErrorApi(true);
     }
@@ -55,16 +56,15 @@ const PeoplePage = ({ setErrorApi }) => {
 
   return (
     <>
-
-        <PeopleNavigation
-          getResource={getResource}
-          prevPage={prevPage}
-          nextPage={nextPage}
-          counterPage={counterPage}
-        />
-        {people.length > 0 && <PeopleList people={people} />}
-      </>
-      )
+      <PeopleNavigation
+        getResource={getResource}
+        prevPage={prevPage}
+        nextPage={nextPage}
+        counterPage={counterPage}
+      />
+      {(people.length > 0 && <PeopleList people={people} />) || (isLoading && <Preloader />)}
+    </>
+  );
 };
 
 PeoplePage.propTypes = {

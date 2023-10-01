@@ -1,8 +1,8 @@
 import styles from "./SearchPageInfo.module.css";
 import { Link } from "react-router-dom";
+import Preloader from '../../Preloader/Preloader';
 
-const SearchPageInfo = ({ people }) => {
-  
+const SearchPageInfo = ({ people, isLoading }) => {
   return (
     <>
       {people.length > 0 ? (
@@ -18,7 +18,7 @@ const SearchPageInfo = ({ people }) => {
             );
           })}
         </ul>
-      ) : (
+      ) : (isLoading ? <Preloader /> :
         <span className={styles.person__cmnt}>No results</span>
       )}
     </>

@@ -5,6 +5,7 @@
   "private": true,
   "dependencies": {
     "classnames": "^2.3.2",
+    "gh-pages": "^6.0.0",
     "lodash": "^4.17.21",
     "prop-types": "^15.8.1",
     "react": "^18.2.0",
@@ -15,14 +16,21 @@
     "react-scripts": "5.0.1",
     "redux": "^4.2.1",
     "redux-devtools-extension": "^2.13.9",
-    "redux-thunk": "^2.4.2"
+    "redux-thunk": "^2.4.2",
+    "save-dev": "^0.0.1-security"
   },
   "scripts": {
     "start": "react-app-rewired start",
-    "build": "react-app-rewired build",
+
     "eject": "react-app-rewired eject",
     "storybook": "storybook dev -p 6006",
-    "build-storybook": "storybook build"
+    
+    "build": "react-app-rewired build",
+    "build-storybook": "storybook build -o ./build/storybook",
+    "build-gh-pages": "gh-pages -d build",
+    "deploy-storybook": "storybook-to-ghpages",
+
+    "deploy": "npm run build && npm run build-gh-pages"
   },
   "eslintConfig": {
     "extends": [
@@ -52,6 +60,7 @@
     "@storybook/preset-create-react-app": "^7.4.3",
     "@storybook/react": "^7.4.3",
     "@storybook/react-webpack5": "^7.4.3",
+    "@storybook/storybook-deployer": "^2.8.16",
     "@storybook/testing-library": "^0.2.1",
     "@types/react": "^18.2.23",
     "@types/react-dom": "^18.2.8",
