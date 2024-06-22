@@ -4,8 +4,8 @@ import { Link } from "react-router-dom";
 import UiButton from "../../UI-Kit/UiButton/UiButton";
 
 const PeopleNavigation = ({ getResource, prevPage, nextPage, counterPage }) => {
-    const handleChangePrev = () => getResource(prevPage);
-    const handleChangeNext = () => getResource(nextPage);
+  const handleChangePrev = () => getResource(prevPage);
+  const handleChangeNext = () => getResource(nextPage);
 
   return (
     <section className={styles.wrap}>
@@ -14,11 +14,10 @@ const PeopleNavigation = ({ getResource, prevPage, nextPage, counterPage }) => {
           text="Previous"
           handleChangeNav={handleChangePrev}
           disabled={!prevPage}
-        //   theme='light'
         />
       </Link>
       <Link className={styles.link} to={`/people/?page=${counterPage + 1}`}>
-      <UiButton
+        <UiButton
           text="Next"
           handleChangeNav={handleChangeNext}
           disabled={!nextPage}

@@ -4,7 +4,7 @@ import { BrowserRouter } from "react-router-dom";
 import store from "./store/store";
 import { Provider } from "react-redux";
 import ThemeProvider from "./context/ThemeProvider";
-import { REPO_NAME } from './constants/repo';
+import { REPO_NAME } from "./constants/repo";
 
 import App from "@containers/App/App";
 

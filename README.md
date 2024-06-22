@@ -3,7 +3,6 @@
 ## 🐧 Links
 - `Ссылка на GitHub Pages` https://brainman17.github.io/react-star-wars/
 - `Репозиторий` https://github.com/Brainman17/react-star-wars
-- `Курс`  https://youtube.com/playlist?list=PL7cTIfGFrdKkQAWKDu2NdFt5Cx38B-A3i&si=TS-Gj2vKUl1X2WtI
 
 ## 🐶 Scripts and Commands
 
